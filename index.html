@@ -5,19 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JavaScript Fundamentals - Demos</title>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 3rem auto; padding: 0 1rem; }
-    ul { line-height: 2; font-size: 1.1rem; }
-    a { color: #007bff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #6366f1;
+      --accent-2: #22d3ee;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 50% -10%, #1e293b, var(--bg));
+      color: var(--text); max-width: 640px; margin: 3rem auto; padding: 0 1rem;
+      min-height: 100vh;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.3rem;
+         background: linear-gradient(90deg, var(--accent), var(--accent-2));
+         -webkit-background-clip: text; background-clip: text; color: transparent; }
+    p { color: var(--muted); }
+    ul { list-style: none; padding: 0; margin-top: 1.5rem; }
+    li { margin: 0.8rem 0; }
+    a {
+      display: block; padding: 1.1rem 1.3rem; border-radius: 14px;
+      background: var(--card); color: var(--text); text-decoration: none;
+      font-size: 1.15rem; font-weight: 600; border: 1px solid #293548;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: transform .1s, border-color .15s;
+    }
+    a:hover { transform: translateY(-2px); border-color: var(--accent); }
+    a span { display: block; font-size: 0.9rem; font-weight: 400; color: var(--muted); margin-top: 0.3rem; }
   </style>
 </head>
 <body>
   <h1>JavaScript Fundamentals</h1>
   <p>Three small interactive demos, each focused on a core JavaScript concept.</p>
   <ul>
-    <li><a href="counter/index.html">Counter</a> &mdash; scope, closures, hoisting</li>
-    <li><a href="todo/index.html">To-Do</a> &mdash; DOM manipulation &amp; events</li>
-    <li><a href="quiz/index.html">Quiz</a> &mdash; Promises / async flow</li>
+    <li><a href="counter/index.html">Counter<span>Scope, closures &amp; hoisting</span></a></li>
+    <li><a href="todo/index.html">To-Do<span>DOM manipulation &amp; events</span></a></li>
+    <li><a href="quiz/index.html">Quiz<span>Promises / async flow</span></a></li>
   </ul>
 </body>
 </html>

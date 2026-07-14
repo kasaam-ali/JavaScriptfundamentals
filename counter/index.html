@@ -5,12 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Counter Demo - Scope, Closures & Hoisting</title>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
-    .display { font-size: 3rem; text-align: center; margin: 1rem 0; }
-    .btns { display: flex; gap: 0.5rem; justify-content: center; }
-    button { padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; }
-    .note { background: #f4f4f4; padding: 1rem; border-radius: 8px; font-size: 0.9rem; }
-    code { background: #e6e6e6; padding: 0 4px; border-radius: 4px; }
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #6366f1;
+      --accent-2: #22d3ee;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 50% -10%, #1e293b, var(--bg));
+      color: var(--text);
+      max-width: 640px; margin: 3rem auto; padding: 0 1rem;
+      min-height: 100vh;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    p { color: var(--muted); }
+    .card {
+      background: var(--card);
+      padding: 2rem; border-radius: 16px; margin: 1.5rem 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    .display {
+      font-size: 4rem; font-weight: 700; text-align: center;
+      margin: 1rem 0; background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .btns { display: flex; gap: 0.6rem; justify-content: center; }
+    button {
+      padding: 0.7rem 1.4rem; font-size: 1rem; cursor: pointer;
+      border: none; border-radius: 10px; color: #fff; font-weight: 600;
+      background: var(--accent); transition: transform .1s, filter .15s;
+    }
+    button:hover { filter: brightness(1.1); }
+    button:active { transform: scale(0.96); }
+    #reset { background: #475569; }
+    .note { background: #0b1220; padding: 1rem 1.2rem; border-radius: 12px;
+            font-size: 0.9rem; color: var(--muted); border: 1px solid #293548; }
+    .note h3 { color: var(--text); margin-top: 0; }
+    code { background: #334155; padding: 0 6px; border-radius: 6px; color: #cbd5e1; }
   </style>
 </head>
 <body>
