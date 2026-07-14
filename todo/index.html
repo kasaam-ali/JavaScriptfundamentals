@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do Demo - DOM & Events</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    .row { display: flex; gap: 0.5rem; }
+    input[type="text"] { flex: 1; padding: 0.6rem; font-size: 1rem; }
+    button { padding: 0.6rem 1rem; cursor: pointer; }
+    ul { list-style: none; padding: 0; margin-top: 1rem; }
+    li { display: flex; justify-content: space-between; align-items: center;
+         padding: 0.6rem; border-bottom: 1px solid #eee; }
+    li.done span { text-decoration: line-through; color: #999; }
+    .del { color: #c0392b; background: none; border: none; cursor: pointer; }
+    .stats { margin-top: 1rem; font-size: 0.9rem; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>To-Do Demo</h1>
+  <p>Practice <strong>DOM manipulation</strong> and <strong>event handling</strong>: add tasks, toggle completion, and delete them.</p>
+
+  <div class="row">
+    <input type="text" id="taskInput" placeholder="What needs to be done?" />
+    <button id="addBtn">Add</button>
+  </div>
+
+  <ul id="list"></ul>
+  <div class="stats" id="stats">0 tasks</div>
+
+  <script>
+    const input = document.getElementById("taskInput");
+    const addBtn = document.getElementById("addBtn");
+    const list = document.getElementById("list");
+    const stats = document.getElementById("stats");
+
+    let tasks = []; // array of { id, text, done }
+
+    // Creates one <li> element and wires up its events (DOM + events).
+    function renderTask(task) {
+      const li = document.createElement("li");
+      if (task.done) li.classList.add("done");
+
+      const span = document.createElement("span");
+      span.textContent = task.text;
+      // Clicking the text toggles the done state.
+      span.addEventListener("click", () => {
+        task.done = !task.done;
+        li.classList.toggle("done", task.done);
+        updateStats();
+      });
+
+      const del = document.createElement("button");
+      del.className = "del";
+      del.textContent = "✕";
+      del.addEventListener("click", () => {
+        tasks = tasks.filter((t) => t.id !== task.id);
+        li.remove();
+        updateStats();
+      });
+
+      li.append(span, del);
+      return li;
+    }
+
+    function addTask() {
+      const text = input.value.trim();
+      if (!text) return;
+      const task = { id: Date.now(), text, done: false };
+      tasks.push(task);
+      list.appendChild(renderTask(task));
+      input.value = "";
+      input.focus();
+      updateStats();
+    }
+
+    function updateStats() {
+      const remaining = tasks.filter((t) => !t.done).length;
+      stats.textContent = `${tasks.length} task(s), ${remaining} remaining`;
+    }
+
+    // Event handling: button click and Enter key press.
+    addBtn.addEventListener("click", addTask);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") addTask();
+    });
+  </script>
+</body>
+</html>

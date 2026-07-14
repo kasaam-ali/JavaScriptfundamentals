@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counter Demo - Scope, Closures & Hoisting</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    .display { font-size: 3rem; text-align: center; margin: 1rem 0; }
+    .btns { display: flex; gap: 0.5rem; justify-content: center; }
+    button { padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; }
+    .note { background: #f4f4f4; padding: 1rem; border-radius: 8px; font-size: 0.9rem; }
+    code { background: #e6e6e6; padding: 0 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Counter Demo</h1>
+  <p>This demo shows <strong>scope</strong>, <strong>closures</strong>, and <strong>hoisting</strong> in plain JavaScript.</p>
+
+  <div class="display" id="display">0</div>
+  <div class="btns">
+    <button id="dec">-1</button>
+    <button id="inc">+1</button>
+    <button id="reset">Reset</button>
+  </div>
+
+  <div class="note">
+    <h3>What to look at</h3>
+    <ul>
+      <li><strong>Hoisting:</strong> <code>createCounter</code> is a function declaration, so it can be called before it appears in the source.</li>
+      <li><strong>Closures:</strong> each counter keeps its own private <code>count</code> variable through the returned functions.</li>
+      <li><strong>Scope:</strong> <code>count</code> is hidden inside the factory; the outside world can only change it through the returned methods.</li>
+    </ul>
+  </div>
+
+  <script>
+    // HOISTING: function declarations are hoisted, so calling createCounter()
+    // here works even though it is defined further down.
+    const counter = createCounter(0);
+
+    // CLOSURE + SCOPE: createCounter returns an object of functions that
+    // "close over" the private `count` variable. Nothing outside can touch
+    // `count` directly -- only through these methods.
+    function createCounter(initial) {
+      let count = initial; // private state, not reachable from outside
+
+      return {
+        increment() { count += 1; return count; },
+        decrement() { count -= 1; return count; },
+        reset() { count = initial; return count; },
+        get value() { return count; },
+      };
+    }
+
+    const display = document.getElementById("display");
+    function render() { display.textContent = counter.value; }
+
+    document.getElementById("inc").addEventListener("click", () => { counter.increment(); render(); });
+    document.getElementById("dec").addEventListener("click", () => { counter.decrement(); render(); });
+    document.getElementById("reset").addEventListener("click", () => { counter.reset(); render(); });
+
+    render();
+  </script>
+</body>
+</html>

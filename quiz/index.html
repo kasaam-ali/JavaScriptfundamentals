@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Demo - Promises</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    .question { font-size: 1.2rem; margin: 1rem 0; }
+    .options button { display: block; width: 100%; text-align: left; margin: 0.4rem 0;
+                      padding: 0.7rem; font-size: 1rem; cursor: pointer; }
+    .correct { background: #d4edda; }
+    .wrong { background: #f8d7da; }
+    .bar { height: 6px; background: #eee; border-radius: 4px; overflow: hidden; margin: 1rem 0; }
+    .bar > div { height: 100%; width: 0; background: #007bff; transition: width 0.3s; }
+    #status { font-size: 0.9rem; color: #555; min-height: 1.2em; }
+  </style>
+</head>
+<body>
+  <h1>Quiz Demo</h1>
+  <p>Questions are loaded <strong>asynchronously</strong> using <strong>Promises</strong> (simulated network delay).</p>
+
+  <div class="bar"><div id="progress"></div></div>
+  <div id="status">Loading questions…</div>
+  <div id="quiz"></div>
+
+  <script>
+    // A mock data source. fetchQuestions() returns a Promise that resolves
+    // after a short delay, simulating an API call.
+    function fetchQuestions() {
+      const data = [
+        { q: "What is a closure?", options: [
+            "A function bundled with its lexical scope",
+            "A type of loop",
+            "A CSS property",
+            "A browser API" ], answer: 0 },
+        { q: "Which declaration is hoisted AND initialized to undefined?",
+          options: ["let", "const", "var", "function"], answer: 2 },
+        { q: "What does a Promise represent?",
+          options: ["A finished value only", "A future value of an async operation",
+                    "A CSS animation", "A DOM node"], answer: 1 },
+      ];
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(data), 800);
+      });
+    }
+
+    const quizEl = document.getElementById("quiz");
+    const statusEl = document.getElementById("status");
+    const progressEl = document.getElementById("progress");
+
+    let current = 0;
+    let score = 0;
+    let questions = [];
+
+    // Promise chaining with .then() / .catch()
+    fetchQuestions()
+      .then((data) => {
+        questions = data;
+        statusEl.textContent = `Loaded ${questions.length} questions. Good luck!`;
+        renderQuestion();
+      })
+      .catch((err) => {
+        statusEl.textContent = "Failed to load questions: " + err;
+      });
+
+    function renderQuestion() {
+      const item = questions[current];
+      progressEl.style.width = ((current) / questions.length) * 100 + "%";
+      quizEl.innerHTML = "";
+
+      const q = document.createElement("div");
+      q.className = "question";
+      q.textContent = `Q${current + 1}: ${item.q}`;
+      quizEl.appendChild(q);
+
+      const opts = document.createElement("div");
+      opts.className = "options";
+      item.options.forEach((text, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = text;
+        btn.addEventListener("click", () => handleAnswer(btn, i, item.answer, opts));
+        opts.appendChild(btn);
+      });
+      quizEl.appendChild(opts);
+    }
+
+    function handleAnswer(btn, choice, correct, opts) {
+      // Disable all options after answering.
+      [...opts.children].forEach((b) => (b.disabled = true));
+      if (choice === correct) {
+        btn.classList.add("correct");
+        score += 1;
+        statusEl.textContent = "Correct!";
+      } else {
+        btn.classList.add("wrong");
+        opts.children[correct].classList.add("correct");
+        statusEl.textContent = "Wrong!";
+      }
+      // Move to next question after a short pause (another async step).
+      setTimeout(() => {
+        current += 1;
+        if (current < questions.length) renderQuestion();
+        else showResult();
+      }, 900);
+    }
+
+    function showResult() {
+      progressEl.style.width = "100%";
+      quizEl.innerHTML = `<div class="question">You scored ${score} / ${questions.length}</div>`;
+      statusEl.textContent = "Quiz finished.";
+    }
+  </script>
+</body>
+</html>
