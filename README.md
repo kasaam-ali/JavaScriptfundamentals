@@ -13,6 +13,15 @@ click. Open the demos in any browser (no build step, no dependencies).
 
 👉 Start from [`index.html`](index.html) for a hub that links to all three.
 
+## What I Learned
+
+A code-free study roadmap of the
+[Chai Aur JavaScript](https://www.youtube.com/playlist?list=PLu71SKxNbfoBuX3f4EOACle2y-tRC5Q37)
+playlist (30 topics, from setup to `filter`/`map`/`reduce`), with notes on how
+each concept connects back to the demos in this repo.
+
+👉 Read it here: [`learning.md`](learning.md)
+
 ---
 
 ## Concepts covered
