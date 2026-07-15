@@ -1,10 +1,5 @@
 # What I Learned — JavaScript Fundamentals
 
-**Task:** JavaScript fundamentals (videos 1–35)
-**Roadmap:** Core JavaScript — variables, data types, functions, DOM manipulation,
-events, arrays, objects, and async basics (callbacks, promises).
-**Budget:** 7–15 days depending on pace.
-
 This is my write-up of the concepts I studied while following the
 [Chai Aur JavaScript](https://www.youtube.com/playlist?list=PLu71SKxNbfoBuX3f4EOACle2y-tRC5Q37)
 playlist. For each area I explain the concept in my own words and connect it to
@@ -33,7 +28,7 @@ converted, and I convert user input to numbers with `Number()` before doing math
 
 ## 3. Functions
 
-Functions were a big area for me. I learned about function declarations vs
+I learned about function declarations vs
 expressions, parameters vs arguments, and default values. The most important
 idea was **closures**: a function "remembers" the variables from the scope where
 it was created, even after that scope has finished. That is how my `counter` demo
