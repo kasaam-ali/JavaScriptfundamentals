@@ -15,10 +15,10 @@ click. Open the demos in any browser (no build step, no dependencies).
 
 ## What I Learned
 
-A code-free study roadmap of the
-[Chai Aur JavaScript](https://www.youtube.com/playlist?list=PLu71SKxNbfoBuX3f4EOACle2y-tRC5Q37)
-playlist (30 topics, from setup to `filter`/`map`/`reduce`), with notes on how
-each concept connects back to the demos in this repo.
+My personal write-up of the JavaScript fundamentals I studied (videos 1–35):
+variables, data types, functions, DOM manipulation, events, arrays, objects, and
+async basics (callbacks, promises) — explained in my own words and connected to
+the demos in this repo.
 
 👉 Read it here: [`learning.md`](learning.md)
 
