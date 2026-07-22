@@ -22,6 +22,15 @@ the demos in this repo.
 
 👉 Read it here: [`learning.md`](learning.md)
 
+## What I Learned (Advanced)
+
+My personal write-up of the advanced JavaScript concepts I studied (videos
+36–51): prototypes & prototype chain, ES6+ features (destructuring, spread/rest,
+optional chaining), iterators, generators, ES modules, and design patterns —
+explained in my own words with annotated code exercises.
+
+👉 Read it here: [`advanced-learning.md`](advanced-learning.md)
+
 ---
 
 ## Concepts covered
@@ -98,8 +107,21 @@ python -m http.server 8000
 
 ```
 JavaScriptfundamentals/
-├── index.html          # hub page
-├── counter/index.html  # scope, closures, hoisting
-├── todo/index.html     # DOM + events
-└── quiz/index.html     # promises
+├── index.html              # hub page
+├── counter/index.html      # scope, closures, hoisting
+├── todo/index.html         # DOM + events
+├── quiz/index.html         # promises
+├── advanced/               # Advanced JS annotated exercises
+│   ├── 01-prototypes.js
+│   ├── 02-es6-plus.js
+│   ├── 03-generators-iterators.js
+│   ├── 04-es-modules/
+│   │   ├── math-es.mjs
+│   │   ├── app-es.mjs
+│   │   ├── math-cjs.cjs
+│   │   └── app-cjs.cjs
+│   └── 05-design-patterns.js
+├── learning.md             # What I Learned — fundamentals
+├── advanced-learning.md    # What I Learned — advanced
+└── README.md
 ```
