@@ -1,10 +1,5 @@
-# What I Learned — Advanced JavaScript
+# What I Learned Advanced JavaScript
 
-**Task:** Advanced JavaScript (videos 36–51)
-**Roadmap:** Prototypes & prototype chain, ES6+ features (destructuring, spread/rest,
-optional chaining), iterators, generators, ES modules, and common design patterns.
-**Budget:** 7–15 days depending on pace.
-**Due:** 7/19/2026
 
 This is my write-up of the advanced JS concepts I studied. For each area I
 explain the concept in my own words and connect it to the annotated exercises
